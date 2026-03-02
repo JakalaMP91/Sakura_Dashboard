@@ -264,8 +264,8 @@ body {
 
     .sidebar {
         width: 100%;
-        height: 65vh;
-        /* Increased from 40vh */
+        height: 60vh;
+        /* Was 65vh, now -5% */
         order: 2;
         border-right: none;
         border-top: 1px solid var(--glass-border);
@@ -273,20 +273,20 @@ body {
     }
 
     .main-area {
-        height: 35vh;
-        /* Reduced from 60vh */
+        height: 40vh;
+        /* Was 35vh, now +5% */
         min-height: 250px;
         transition: height 0.3s ease;
     }
 
-    /* Map Resize State */
-    .map-mini .main-area {
-        height: 150px;
-        min-height: 150px;
+    /* Map Expansion State (Maximieren) */
+    .map-maximized .main-area {
+        height: 80vh;
+        min-height: 80vh;
     }
 
-    .map-mini .sidebar {
-        height: calc(100vh - 150px);
+    .map-maximized .sidebar {
+        height: 20vh;
     }
 
     .map-overlay {

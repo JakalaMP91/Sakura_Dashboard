@@ -789,7 +789,13 @@ function init() {
 
     document.getElementById('resize-map-button').onclick = () => {
         const container = document.querySelector('.app-container');
-        container.classList.toggle('map-mini');
+        const isMaximized = container.classList.toggle('map-maximized');
+
+        // Update icon
+        const icon = document.querySelector('#resize-map-button i');
+        if (icon) {
+            icon.className = isMaximized ? 'fas fa-compress' : 'fas fa-expand';
+        }
 
         // Leaflet needs to know if the container resized
         setTimeout(() => {
