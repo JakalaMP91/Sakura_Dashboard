@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Dashboard MVP - Japan Reise</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts (Inter & Outfit for premium look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Info Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h1>Sakura Front 2026</h1>
+                    <div id="offline-indicator"
+                        style="display: none; font-size: 0.6rem; color: #ff4444; border: 1px solid #ff4444; padding: 1px 4px; border-radius: 3px; font-weight: bold;">
+                        OFFLINE</div>
+                </div>
+                <p style="font-size: 0.8rem; color: #888; margin-top: 4px;">Echte Daten & MVP Dashboard</p>
+                <button id="sync-button"
+                    style="margin-top: 12px; width: 100%; padding: 8px; border-radius: 6px; border: 1px solid var(--sakura-pink); background: transparent; color: var(--sakura-pink); cursor: pointer; font-size: 0.8rem; transition: 0.3s;">
+                    🔄 JMA Live Sync
+                </button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                    <button id="clear-data-button"
+                        style="background: transparent; border: none; color: #444; font-size: 0.65rem; cursor: pointer; text-decoration: underline;">Daten
+                        löschen</button>
+                    <p id="last-sync-time" style="font-size: 0.65rem; color: #555; text-align: right;">Noch nicht
+                        synchronisiert</p>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div id="city-list" class="city-list">
+                    <!-- Cities will be injected by JavaScript -->
+                    <div style="text-align: center; padding: 20px; color: #666;">
+                        Lade Städte-Daten...
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 16px; border-top: 1px solid var(--glass-border); font-size: 0.75rem; color: #666;">
+                Referenz: JMA, JWA, JMC (MVP Version)
+            </div>
+        </aside>
+
+        <!-- Map Area -->
+        <main class="main-area">
+            <div id="map"></div>
+
+            <!-- Dashboard Overlay Controls -->
+            <div class="map-overlay">
+                <div class="timeline-container">
+                    <div class="timeline-header">
+                        <span id="current-view-date">2. März 2026</span>
+                        <span id="view-mode-label" style="color: var(--sakura-pink);">Forecast Mode</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
+                        <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="90" value="0"
+                            style="flex: 1;">
+                        <button id="reset-now-button"
+                            style="padding: 4px 10px; border-radius: 4px; border: 1px solid #555; background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; font-size: 0.7rem; white-space: nowrap; transition: 0.2s;">
+                            Heute
+                        </button>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; font-size: 10px; color: #888; margin-top: 8px;">
+                        <span>Feb</span>
+                        <span>März</span>
+                        <span>April</span>
+                        <span>Mai</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- App Logic -->
+    <script src="app.js"></script>
+</body>
+
+</html>
