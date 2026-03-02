@@ -16,6 +16,38 @@
     box-sizing: border-box;
 }
 
+/* Map Buttons */
+.map-btn {
+    width: 38px;
+    height: 38px;
+    background: rgba(26, 26, 26, 0.9);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.map-btn:hover {
+    background: var(--sakura-pink);
+    color: var(--bg-dark);
+    transform: scale(1.05);
+}
+
+.map-btn:active {
+    transform: scale(0.95);
+}
+
+.mobile-only {
+    display: none;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-dark);
@@ -226,6 +258,10 @@ body {
         /* Allow full page scroll if needed, though we usually prefer fixed heights */
     }
 
+    .mobile-only {
+        display: flex;
+    }
+
     .sidebar {
         width: 100%;
         height: 65vh;
@@ -233,12 +269,24 @@ body {
         order: 2;
         border-right: none;
         border-top: 1px solid var(--glass-border);
+        transition: height 0.3s ease;
     }
 
     .main-area {
         height: 35vh;
         /* Reduced from 60vh */
         min-height: 250px;
+        transition: height 0.3s ease;
+    }
+
+    /* Map Resize State */
+    .map-mini .main-area {
+        height: 150px;
+        min-height: 150px;
+    }
+
+    .map-mini .sidebar {
+        height: calc(100vh - 150px);
     }
 
     .map-overlay {

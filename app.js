@@ -756,6 +756,47 @@ function init() {
         slider.value = initialDays;
     }
 
+    // 4. Map Controls (GPS & Resize)
+    document.getElementById('locate-button').onclick = () => {
+        if (!navigator.geolocation) return alert("Geolocation wird nicht unterstützt.");
+
+        const btn = document.getElementById('locate-button');
+        btn.style.color = "var(--sakura-pink)";
+
+        navigator.geolocation.getCurrentPosition(pos => {
+            const { latitude, longitude } = pos.coords;
+            map.flyTo([latitude, longitude], 13);
+
+            // Add a temporary marker for the user
+            L.circleMarker([latitude, longitude], {
+                radius: 8,
+                fillColor: "#3498db",
+                color: "#fff",
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.8
+            }).addTo(map)
+                .bindPopup("Du bist hier")
+                .openPopup();
+
+            setTimeout(() => btn.style.color = "", 2000);
+        }, err => {
+            console.error(err);
+            alert("Standort konnte nicht ermittelt werden.");
+            btn.style.color = "";
+        });
+    };
+
+    document.getElementById('resize-map-button').onclick = () => {
+        const container = document.querySelector('.app-container');
+        container.classList.toggle('map-mini');
+
+        // Leaflet needs to know if the container resized
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 350);
+    };
+
     updateUI();
 }
 
